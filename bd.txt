@@ -98,6 +98,15 @@ constraint fk_EmpleadoTipoEmpleado foreign key (idTipoEmpleado) references TipoE
 constraint fk_EmpleadoUsuario foreign key (idUsuario) references Usuario(idUsuario )
 );
 
+create table Cliente(
+idCliente int primary key identity,
+idPersona int not null,
+idUsuario int not null,
+estatus bit not null,
+
+constraint fk_ClientePersona foreign key (idPersona) references Persona (idPersona),
+constraint fk_ClienteUsuario foreign key (idUsuario) references Usuario (idUsuario));
+
 
 create table Tarjeta(
 idTarjeta int primary key identity,
@@ -106,18 +115,12 @@ mes int not null,
 anio int not null,
 nombre varchar(150) not null,
 estatus bit default 1,
-cvv char(3) default 000);
+cvv char(3) default 000,
+idCliente int not null,
 
-create table Cliente(
-idCliente int primary key identity,
-idTarjeta int not null,
-idPersona int not null,
-idUsuario int not null,
-estatus bit not null,
+constraint fk_TarjetaCliente foreign key (idCliente) references Cliente (idCliente)
+);
 
-constraint fk_ClientePersona foreign key (idPersona) references Persona (idPersona),
-constraint fk_ClienteTarjeta foreign key (idTarjeta) references Tarjeta (idTarjeta),
-constraint fk_ClienteUsuario foreign key (idUsuario) references Usuario (idUsuario));
 
 create table Categoria(
 idCategoria int primary key identity,
