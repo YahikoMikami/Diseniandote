@@ -1,0 +1,259 @@
+drop database diseniandote;
+create database diseniandote;
+
+use diseniandote;
+
+create table Pais(
+idPais int primary key identity,
+nombre varchar(70) not null,
+estatus bit default 1 
+)
+
+create table Estado(
+idEstado int identity primary key,
+nombre varchar(150) not null,
+estatus bit default 1,
+idPais int not null,
+constraint fk_EstadoPais foreign key  (idPais) references Pais(idPais)
+);
+
+create table Ciudad(
+idCiudad int primary key identity,
+nombre varchar(150) not null,
+estatus bit default 1 ,
+idEstado int not null,
+
+constraint fk_CiudadEstado foreign key (idEstado) references Estado(idEstado)
+);
+
+
+
+create table Domicilio(
+idDomicilio int primary key identity,
+calle varchar(120) not null,
+colonia varchar(120) not null,
+cp char (5) not null,
+numeroInt varchar(5) not null,
+numeroExt varchar(5) not null,
+estatus bit default 1,
+idCiudad int not null,
+
+constraint fk_DomicilioCiudad foreign key (idCiudad) references Ciudad(idCiudad)
+);
+
+
+create table Persona(
+idpersona int primary key identity,
+nombre varchar (120) not null,
+apellidoP varchar(40) not null,
+apellidoM varchar(40),
+fechaNac date not null,
+estatus bit default 1,
+telefonoCasa varchar(12),
+telefonoMovil varchar(12),
+
+idDomicilio int not null,
+
+constraint fk_PersonaDomicilio foreign key (idDomicilio) references Domicilio(idDomicilio)
+);
+
+
+create table TipoEmpleado(
+idTipoEmpleado int primary key identity,
+descripcion varchar(120) not null,
+estatus bit default 1
+);
+
+create table TipoUsuario(
+idTipoUsuario int primary key identity,
+descripcion varchar(120) not null,
+estatus bit default 1 
+);
+
+create table Usuario(
+idUsuario int primary key identity,
+correoElectronico varchar(120) not null,
+nombrePerfil varchar(30) not null,
+contrasenia varchar(128) not null,
+estatus bit default 1,
+idTipoUsuario int not null,
+
+constraint fk_UsuarioTipoUsuario foreign key (idTipoUsuario) references TipoUsuario(idTipoUsuario)
+);
+
+create table Empleado(
+idEmpleado int primary key identity,
+fechaIngreso date not null,
+fechaSalida date,
+salario money not null,
+nss varchar(15) not null,
+estatus bit default 1,
+
+idPersona int not null,
+idTipoEmpleado int not null,
+idUsuario int not null,
+
+constraint fk_EmpleadoPersona foreign key (idPersona) references Persona(idPersona),
+constraint fk_EmpleadoTipoEmpleado foreign key (idTipoEmpleado) references TipoEmpleado(idTipoEmpleado),
+constraint fk_EmpleadoUsuario foreign key (idUsuario) references Usuario(idUsuario )
+);
+
+
+create table Tarjeta(
+idTarjeta int primary key identity,
+numero int not null,
+mes int not null,
+anio int not null,
+nombre varchar(150) not null,
+estatus bit default 1,
+cvv char(3) default 000);
+
+create table Cliente(
+idCliente int primary key identity,
+idTarjeta int not null,
+idPersona int not null,
+idUsuario int not null,
+estatus bit not null,
+
+constraint fk_ClientePersona foreign key (idPersona) references Persona (idPersona),
+constraint fk_ClienteTarjeta foreign key (idTarjeta) references Tarjeta (idTarjeta),
+constraint fk_ClienteUsuario foreign key (idUsuario) references Usuario (idUsuario));
+
+create table Categoria(
+idCategoria int primary key identity,
+nombre varchar(70) not null,
+descripcion varchar(70) not null,
+estatus bit default 1
+);
+
+create table Producto(
+idProducto int primary key identity,
+nombre varchar(70) not null,
+descripcion varchar(120) not null,
+precioProduccion money,
+precioVenta money not null,
+estatus bit default 1,
+
+idCategoria int not null,
+
+constraint fk_ProductoCategoria foreign key (idCategoria) references Categoria(idCategoria)
+);
+
+create table inventario(
+idInventario int primary key identity,
+idProducto int not null,
+cantidadMin int not null,
+cantidadMax int not null,
+cantidadDisponible int not null
+
+constraint fk_InventarioProducto foreign key (idProducto) references Producto(idProducto)
+);
+
+create table Medida(
+idMedida int primary key identity,
+descripcion varchar(70) not null,
+estatus bit default 1
+);
+
+create table Material(
+idMaterial int primary key identity,
+nombre varchar(70) not null,
+descripcion varchar(180) not null,
+precio money not null,
+estatus bit default 1,
+
+idMedida int not null,
+
+constraint fk_MateriaMedida foreign key (idMedida) references Medida(idMedida)
+);
+
+create table Almacen (
+idAlmacen int primary key identity,
+cantidad float not null,
+
+idMaterial int not null,
+
+constraint fk_AlmacenMaterial foreign key (idMaterial) references Material(idMaterial)
+);
+
+
+create table Pedido(
+idPedido int primary key identity,
+fechaSolicitud date not null,
+fechaEntrega date,
+estatus bit default 1,
+total float,
+fechaPago date,
+numTarjeta varchar(15) not null,
+
+idUsuario int not null,
+
+constraint fk_PedidoUsuario foreign key (idUsuario) references Usuario(idUsuario)
+);
+
+create table DetallePedido(
+idDetallePedido int primary key identity,
+cantidad int not null,
+descuento float not null,
+precioU money not null,
+precioDesc money not null,
+
+idProducto int not null,
+idPedido int not null,
+
+constraint fk_DetallePedidoProducto foreign key (idProducto) references Producto(idProducto),
+constraint fk_DetallePedidoPedido foreign key (idPedido) references Pedido(idPedido)
+);
+
+create table DatosFacturacion(
+idDatosFacturacion int primary key identity,
+rfc varchar(13) not null,
+razonSocial varchar(18)not null,
+
+idDomicilio int not null,
+idCliente int not null,
+
+constraint fk_DatosFacturacionDomicilio foreign key (idDatosFacturacion) references Domicilio(idDomicilio),
+constraint fk_DatosFacturacionCliente foreign key (idCliente) references Cliente(idCliente)
+);
+
+create table DatosEnvio(
+idDatosEnvio int primary key  identity,
+idCliente int not null,
+idDomicilio int not null,
+
+constraint fk_DatosEnvioCliente foreign key (idCliente) references Cliente(idCliente),
+constraint fk_DatosEnvioDomicilio foreign key (idDomicilio) references Domicilio(idDomicilio)
+);
+
+create table TipoProduccion(
+idTipoProduccion int primary key identity,
+descripcion varchar (70) not null,
+estatus bit not null
+);
+
+create table Produccion(
+idProduccion int identity primary key,
+idTipoProduccion int not null,
+costoDisenio float not null,
+costoManoxTiempo float not null,
+porcentajeGanancia float not null,
+subtotalMateriales float not null,
+idProducto not null,
+cantidadProducto not null,
+
+constraint fk_ProduccionProducto foreign key (idProducto) references Producto(idProducto),
+constraint fk_ProducciontTipoProduccion foreign key (idTipoProduccion) references TipoProduccion(idTipoProduccion)
+);
+
+
+create table DetalleProduccion(
+idDetalleProduccion int primary key identity,
+idMaterial int not null,
+idProduccion int not null,
+cantidad float not null,
+subCosto float not null,
+
+constraint fk_DetalleMaterial foreign key(idMaterial) references Material (idMaterial),
+constraint fk_DetalleProducccion foreign key(idProduccion) references Produccion (idProduccion)
+);

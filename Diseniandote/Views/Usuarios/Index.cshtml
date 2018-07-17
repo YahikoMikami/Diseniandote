@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Diseniandote.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.correoElectronico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombrePerfil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contrasenia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoUsuario.descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.correoElectronico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombrePerfil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contrasenia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoUsuario.descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idUsuario }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idUsuario }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idUsuario })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,83 @@
+﻿@model Diseniandote.Models.Empleado
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaIngreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaIngreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaSalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaSalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nss)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nss)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Persona.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoEmpleado.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoEmpleado.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.correoElectronico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.correoElectronico)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idEmpleado }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

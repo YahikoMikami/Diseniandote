@@ -1,0 +1,75 @@
+﻿@model Diseniandote.Models.Produccion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Produccion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.costoDisenio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.costoDisenio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.costoManoxTiempo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.costoManoxTiempo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.porcentajeGanancia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.porcentajeGanancia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subtotalMateriales)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subtotalMateriales)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidadProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidadProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoProduccion.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoProduccion.descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idProduccion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

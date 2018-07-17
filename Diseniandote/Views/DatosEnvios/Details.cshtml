@@ -1,0 +1,35 @@
+﻿@model Diseniandote.Models.DatosEnvio
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DatosEnvio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.idCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.idCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Domicilio.calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Domicilio.calle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idDatosEnvio }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

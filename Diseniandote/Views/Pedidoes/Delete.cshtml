@@ -1,0 +1,81 @@
+﻿@model Diseniandote.Models.Pedido
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Pedido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaSolicitud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaSolicitud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaEntrega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaEntrega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaPago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numTarjeta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numTarjeta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.correoElectronico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.correoElectronico)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

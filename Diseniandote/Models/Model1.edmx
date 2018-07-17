@@ -1,0 +1,1746 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="diseniandoteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Almacen">
+          <Key>
+            <PropertyRef Name="idAlmacen" />
+          </Key>
+          <Property Name="idAlmacen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cantidad" Type="float" Nullable="false" />
+          <Property Name="idMaterial" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+        </EntityType>
+        <EntityType Name="Ciudad">
+          <Key>
+            <PropertyRef Name="idCiudad" />
+          </Key>
+          <Property Name="idCiudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTarjeta" Type="int" Nullable="false" />
+          <Property Name="idPersona" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="estatus" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DatosEnvio">
+          <Key>
+            <PropertyRef Name="idDatosEnvio" />
+          </Key>
+          <Property Name="idDatosEnvio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="idDomicilio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DatosFacturacion">
+          <Key>
+            <PropertyRef Name="idDatosFacturacion" />
+          </Key>
+          <Property Name="idDatosFacturacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rfc" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="razonSocial" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="idDomicilio" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetallePedido">
+          <Key>
+            <PropertyRef Name="idDetallePedido" />
+          </Key>
+          <Property Name="idDetallePedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="descuento" Type="float" Nullable="false" />
+          <Property Name="precioU" Type="money" Nullable="false" />
+          <Property Name="precioDesc" Type="money" Nullable="false" />
+          <Property Name="idProducto" Type="int" Nullable="false" />
+          <Property Name="idPedido" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleProduccion">
+          <Key>
+            <PropertyRef Name="idDetalleProduccion" />
+          </Key>
+          <Property Name="idDetalleProduccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMaterial" Type="int" Nullable="false" />
+          <Property Name="idProduccion" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="float" Nullable="false" />
+          <Property Name="subCosto" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Domicilio">
+          <Key>
+            <PropertyRef Name="idDomicilio" />
+          </Key>
+          <Property Name="idDomicilio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="calle" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="colonia" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="cp" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="numeroInt" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="numeroExt" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+          <Property Name="idCiudad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="idEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaIngreso" Type="date" Nullable="false" />
+          <Property Name="fechaSalida" Type="date" />
+          <Property Name="salario" Type="money" Nullable="false" />
+          <Property Name="nss" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+          <Property Name="idPersona" Type="int" Nullable="false" />
+          <Property Name="idTipoEmpleado" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+          <Property Name="idPais" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="inventario">
+          <Key>
+            <PropertyRef Name="idInventario" />
+          </Key>
+          <Property Name="idInventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idProducto" Type="int" Nullable="false" />
+          <Property Name="cantidadMin" Type="int" Nullable="false" />
+          <Property Name="cantidadMax" Type="int" Nullable="false" />
+          <Property Name="cantidadDisponible" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="idMaterial" />
+          </Key>
+          <Property Name="idMaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="180" Nullable="false" />
+          <Property Name="precio" Type="money" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+          <Property Name="idMedida" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Medida">
+          <Key>
+            <PropertyRef Name="idMedida" />
+          </Key>
+          <Property Name="idMedida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="idPedido" />
+          </Key>
+          <Property Name="idPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaSolicitud" Type="date" Nullable="false" />
+          <Property Name="fechaEntrega" Type="date" />
+          <Property Name="estatus" Type="bit" />
+          <Property Name="total" Type="float" />
+          <Property Name="fechaPago" Type="date" />
+          <Property Name="numTarjeta" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="idpersona" />
+          </Key>
+          <Property Name="idpersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="apellidoP" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="apellidoM" Type="varchar" MaxLength="40" />
+          <Property Name="fechaNac" Type="date" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+          <Property Name="telefonoCasa" Type="varchar" MaxLength="12" />
+          <Property Name="telefonoMovil" Type="varchar" MaxLength="12" />
+          <Property Name="idDomicilio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produccion">
+          <Key>
+            <PropertyRef Name="idProduccion" />
+          </Key>
+          <Property Name="idProduccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoProduccion" Type="int" Nullable="false" />
+          <Property Name="costoDisenio" Type="float" Nullable="false" />
+          <Property Name="costoManoxTiempo" Type="float" Nullable="false" />
+          <Property Name="porcentajeGanancia" Type="float" Nullable="false" />
+          <Property Name="subtotalMateriales" Type="float" Nullable="false" />
+          <Property Name="idProducto" Type="int" Nullable="false" />
+          <Property Name="cantidadProducto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="precioProduccion" Type="money" />
+          <Property Name="precioVenta" Type="money" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+          <Property Name="idCategoria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tarjeta">
+          <Key>
+            <PropertyRef Name="idTarjeta" />
+          </Key>
+          <Property Name="idTarjeta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numero" Type="int" Nullable="false" />
+          <Property Name="mes" Type="int" Nullable="false" />
+          <Property Name="anio" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+          <Property Name="cvv" Type="char" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="TipoEmpleado">
+          <Key>
+            <PropertyRef Name="idTipoEmpleado" />
+          </Key>
+          <Property Name="idTipoEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+        </EntityType>
+        <EntityType Name="TipoProduccion">
+          <Key>
+            <PropertyRef Name="idTipoProduccion" />
+          </Key>
+          <Property Name="idTipoProduccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="estatus" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="idTipoUsuario" />
+          </Key>
+          <Property Name="idTipoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="correoElectronico" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="nombrePerfil" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="contrasenia" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="estatus" Type="bit" />
+          <Property Name="idTipoUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_AlmacenMaterial">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Almacen" Type="Self.Almacen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="idMaterial" />
+            </Principal>
+            <Dependent Role="Almacen">
+              <PropertyRef Name="idMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CiudadEstado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Ciudad">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ClientePersona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idpersona" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ClienteTarjeta">
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarjeta">
+              <PropertyRef Name="idTarjeta" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idTarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ClienteUsuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DatosEnvioCliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="DatosEnvio" Type="Self.DatosEnvio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="DatosEnvio">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DatosEnvioDomicilio">
+          <End Role="Domicilio" Type="Self.Domicilio" Multiplicity="1" />
+          <End Role="DatosEnvio" Type="Self.DatosEnvio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domicilio">
+              <PropertyRef Name="idDomicilio" />
+            </Principal>
+            <Dependent Role="DatosEnvio">
+              <PropertyRef Name="idDomicilio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DatosFacturacionCliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="DatosFacturacion" Type="Self.DatosFacturacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="DatosFacturacion">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DatosFacturacionDomicilio">
+          <End Role="Domicilio" Type="Self.Domicilio" Multiplicity="1" />
+          <End Role="DatosFacturacion" Type="Self.DatosFacturacion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Domicilio">
+              <PropertyRef Name="idDomicilio" />
+            </Principal>
+            <Dependent Role="DatosFacturacion">
+              <PropertyRef Name="idDatosFacturacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DetalleMaterial">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="DetalleProduccion" Type="Self.DetalleProduccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="idMaterial" />
+            </Principal>
+            <Dependent Role="DetalleProduccion">
+              <PropertyRef Name="idMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DetallePedidoPedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="idPedido" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DetallePedidoProducto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DetalleProducccion">
+          <End Role="Produccion" Type="Self.Produccion" Multiplicity="1" />
+          <End Role="DetalleProduccion" Type="Self.DetalleProduccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produccion">
+              <PropertyRef Name="idProduccion" />
+            </Principal>
+            <Dependent Role="DetalleProduccion">
+              <PropertyRef Name="idProduccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DomicilioCiudad">
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+          <End Role="Domicilio" Type="Self.Domicilio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="idCiudad" />
+            </Principal>
+            <Dependent Role="Domicilio">
+              <PropertyRef Name="idCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EmpleadoPersona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idpersona" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EmpleadoTipoEmpleado">
+          <End Role="TipoEmpleado" Type="Self.TipoEmpleado" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEmpleado">
+              <PropertyRef Name="idTipoEmpleado" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="idTipoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EmpleadoUsuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EstadoPais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="Estado">
+              <PropertyRef Name="idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_InventarioProducto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="inventario" Type="Self.inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="inventario">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MateriaMedida">
+          <End Role="Medida" Type="Self.Medida" Multiplicity="1" />
+          <End Role="Material" Type="Self.Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medida">
+              <PropertyRef Name="idMedida" />
+            </Principal>
+            <Dependent Role="Material">
+              <PropertyRef Name="idMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PedidoUsuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonaDomicilio">
+          <End Role="Domicilio" Type="Self.Domicilio" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domicilio">
+              <PropertyRef Name="idDomicilio" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="idDomicilio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProduccionProducto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Produccion" Type="Self.Produccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="Produccion">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProducciontTipoProduccion">
+          <End Role="TipoProduccion" Type="Self.TipoProduccion" Multiplicity="1" />
+          <End Role="Produccion" Type="Self.Produccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProduccion">
+              <PropertyRef Name="idTipoProduccion" />
+            </Principal>
+            <Dependent Role="Produccion">
+              <PropertyRef Name="idTipoProduccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProductoCategoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UsuarioTipoUsuario">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="idTipoUsuario" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="diseniandoteModelStoreContainer">
+          <EntitySet Name="Almacen" EntityType="Self.Almacen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DatosEnvio" EntityType="Self.DatosEnvio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DatosFacturacion" EntityType="Self.DatosFacturacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetallePedido" EntityType="Self.DetallePedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleProduccion" EntityType="Self.DetalleProduccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Domicilio" EntityType="Self.Domicilio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inventario" EntityType="Self.inventario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medida" EntityType="Self.Medida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produccion" EntityType="Self.Produccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoEmpleado" EntityType="Self.TipoEmpleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoProduccion" EntityType="Self.TipoProduccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_AlmacenMaterial" Association="Self.fk_AlmacenMaterial">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Almacen" EntitySet="Almacen" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CiudadEstado" Association="Self.fk_CiudadEstado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Ciudad" EntitySet="Ciudad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ClientePersona" Association="Self.fk_ClientePersona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ClienteTarjeta" Association="Self.fk_ClienteTarjeta">
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ClienteUsuario" Association="Self.fk_ClienteUsuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DatosEnvioCliente" Association="Self.fk_DatosEnvioCliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="DatosEnvio" EntitySet="DatosEnvio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DatosEnvioDomicilio" Association="Self.fk_DatosEnvioDomicilio">
+            <End Role="Domicilio" EntitySet="Domicilio" />
+            <End Role="DatosEnvio" EntitySet="DatosEnvio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DatosFacturacionCliente" Association="Self.fk_DatosFacturacionCliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="DatosFacturacion" EntitySet="DatosFacturacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DatosFacturacionDomicilio" Association="Self.fk_DatosFacturacionDomicilio">
+            <End Role="Domicilio" EntitySet="Domicilio" />
+            <End Role="DatosFacturacion" EntitySet="DatosFacturacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DetalleMaterial" Association="Self.fk_DetalleMaterial">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="DetalleProduccion" EntitySet="DetalleProduccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DetallePedidoPedido" Association="Self.fk_DetallePedidoPedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DetallePedidoProducto" Association="Self.fk_DetallePedidoProducto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DetalleProducccion" Association="Self.fk_DetalleProducccion">
+            <End Role="Produccion" EntitySet="Produccion" />
+            <End Role="DetalleProduccion" EntitySet="DetalleProduccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DomicilioCiudad" Association="Self.fk_DomicilioCiudad">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Domicilio" EntitySet="Domicilio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EmpleadoPersona" Association="Self.fk_EmpleadoPersona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EmpleadoTipoEmpleado" Association="Self.fk_EmpleadoTipoEmpleado">
+            <End Role="TipoEmpleado" EntitySet="TipoEmpleado" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EmpleadoUsuario" Association="Self.fk_EmpleadoUsuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EstadoPais" Association="Self.fk_EstadoPais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Estado" EntitySet="Estado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_InventarioProducto" Association="Self.fk_InventarioProducto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="inventario" EntitySet="inventario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MateriaMedida" Association="Self.fk_MateriaMedida">
+            <End Role="Medida" EntitySet="Medida" />
+            <End Role="Material" EntitySet="Material" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PedidoUsuario" Association="Self.fk_PedidoUsuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonaDomicilio" Association="Self.fk_PersonaDomicilio">
+            <End Role="Domicilio" EntitySet="Domicilio" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProduccionProducto" Association="Self.fk_ProduccionProducto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Produccion" EntitySet="Produccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProducciontTipoProduccion" Association="Self.fk_ProducciontTipoProduccion">
+            <End Role="TipoProduccion" EntitySet="TipoProduccion" />
+            <End Role="Produccion" EntitySet="Produccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProductoCategoria" Association="Self.fk_ProductoCategoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UsuarioTipoUsuario" Association="Self.fk_UsuarioTipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="diseniandoteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Almacen">
+          <Key>
+            <PropertyRef Name="idAlmacen" />
+          </Key>
+          <Property Name="idAlmacen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cantidad" Type="Double" Nullable="false" />
+          <Property Name="idMaterial" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Material" Relationship="Self.fk_AlmacenMaterial" FromRole="Almacen" ToRole="Material" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <NavigationProperty Name="Producto" Relationship="Self.fk_ProductoCategoria" FromRole="Categoria" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Ciudad">
+          <Key>
+            <PropertyRef Name="idCiudad" />
+          </Key>
+          <Property Name="idCiudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estado" Relationship="Self.fk_CiudadEstado" FromRole="Ciudad" ToRole="Estado" />
+          <NavigationProperty Name="Domicilio" Relationship="Self.fk_DomicilioCiudad" FromRole="Ciudad" ToRole="Domicilio" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTarjeta" Type="Int32" Nullable="false" />
+          <Property Name="idPersona" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.fk_ClientePersona" FromRole="Cliente" ToRole="Persona" />
+          <NavigationProperty Name="Tarjeta" Relationship="Self.fk_ClienteTarjeta" FromRole="Cliente" ToRole="Tarjeta" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_ClienteUsuario" FromRole="Cliente" ToRole="Usuario" />
+          <NavigationProperty Name="DatosEnvio" Relationship="Self.fk_DatosEnvioCliente" FromRole="Cliente" ToRole="DatosEnvio" />
+          <NavigationProperty Name="DatosFacturacion" Relationship="Self.fk_DatosFacturacionCliente" FromRole="Cliente" ToRole="DatosFacturacion" />
+        </EntityType>
+        <EntityType Name="DatosEnvio">
+          <Key>
+            <PropertyRef Name="idDatosEnvio" />
+          </Key>
+          <Property Name="idDatosEnvio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idDomicilio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.fk_DatosEnvioCliente" FromRole="DatosEnvio" ToRole="Cliente" />
+          <NavigationProperty Name="Domicilio" Relationship="Self.fk_DatosEnvioDomicilio" FromRole="DatosEnvio" ToRole="Domicilio" />
+        </EntityType>
+        <EntityType Name="DatosFacturacion">
+          <Key>
+            <PropertyRef Name="idDatosFacturacion" />
+          </Key>
+          <Property Name="idDatosFacturacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rfc" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="razonSocial" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idDomicilio" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.fk_DatosFacturacionCliente" FromRole="DatosFacturacion" ToRole="Cliente" />
+          <NavigationProperty Name="Domicilio" Relationship="Self.fk_DatosFacturacionDomicilio" FromRole="DatosFacturacion" ToRole="Domicilio" />
+        </EntityType>
+        <EntityType Name="DetallePedido">
+          <Key>
+            <PropertyRef Name="idDetallePedido" />
+          </Key>
+          <Property Name="idDetallePedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="descuento" Type="Double" Nullable="false" />
+          <Property Name="precioU" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="precioDesc" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="idProducto" Type="Int32" Nullable="false" />
+          <Property Name="idPedido" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.fk_DetallePedidoPedido" FromRole="DetallePedido" ToRole="Pedido" />
+          <NavigationProperty Name="Producto" Relationship="Self.fk_DetallePedidoProducto" FromRole="DetallePedido" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="DetalleProduccion">
+          <Key>
+            <PropertyRef Name="idDetalleProduccion" />
+          </Key>
+          <Property Name="idDetalleProduccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMaterial" Type="Int32" Nullable="false" />
+          <Property Name="idProduccion" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Double" Nullable="false" />
+          <Property Name="subCosto" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Material" Relationship="Self.fk_DetalleMaterial" FromRole="DetalleProduccion" ToRole="Material" />
+          <NavigationProperty Name="Produccion" Relationship="Self.fk_DetalleProducccion" FromRole="DetalleProduccion" ToRole="Produccion" />
+        </EntityType>
+        <EntityType Name="Domicilio">
+          <Key>
+            <PropertyRef Name="idDomicilio" />
+          </Key>
+          <Property Name="idDomicilio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="calle" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="colonia" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cp" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="numeroInt" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numeroExt" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <Property Name="idCiudad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ciudad" Relationship="Self.fk_DomicilioCiudad" FromRole="Domicilio" ToRole="Ciudad" />
+          <NavigationProperty Name="DatosEnvio" Relationship="Self.fk_DatosEnvioDomicilio" FromRole="Domicilio" ToRole="DatosEnvio" />
+          <NavigationProperty Name="DatosFacturacion" Relationship="Self.fk_DatosFacturacionDomicilio" FromRole="Domicilio" ToRole="DatosFacturacion" />
+          <NavigationProperty Name="Persona" Relationship="Self.fk_PersonaDomicilio" FromRole="Domicilio" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaIngreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaSalida" Type="DateTime" Precision="0" />
+          <Property Name="salario" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="nss" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <Property Name="idPersona" Type="Int32" Nullable="false" />
+          <Property Name="idTipoEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.fk_EmpleadoPersona" FromRole="Empleado" ToRole="Persona" />
+          <NavigationProperty Name="TipoEmpleado" Relationship="Self.fk_EmpleadoTipoEmpleado" FromRole="Empleado" ToRole="TipoEmpleado" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_EmpleadoUsuario" FromRole="Empleado" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <Property Name="idPais" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ciudad" Relationship="Self.fk_CiudadEstado" FromRole="Estado" ToRole="Ciudad" />
+          <NavigationProperty Name="Pais" Relationship="Self.fk_EstadoPais" FromRole="Estado" ToRole="Pais" />
+        </EntityType>
+        <EntityType Name="inventario">
+          <Key>
+            <PropertyRef Name="idInventario" />
+          </Key>
+          <Property Name="idInventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProducto" Type="Int32" Nullable="false" />
+          <Property Name="cantidadMin" Type="Int32" Nullable="false" />
+          <Property Name="cantidadMax" Type="Int32" Nullable="false" />
+          <Property Name="cantidadDisponible" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.fk_InventarioProducto" FromRole="inventario" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="idMaterial" />
+          </Key>
+          <Property Name="idMaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <Property Name="idMedida" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Almacen" Relationship="Self.fk_AlmacenMaterial" FromRole="Material" ToRole="Almacen" />
+          <NavigationProperty Name="DetalleProduccion" Relationship="Self.fk_DetalleMaterial" FromRole="Material" ToRole="DetalleProduccion" />
+          <NavigationProperty Name="Medida" Relationship="Self.fk_MateriaMedida" FromRole="Material" ToRole="Medida" />
+        </EntityType>
+        <EntityType Name="Medida">
+          <Key>
+            <PropertyRef Name="idMedida" />
+          </Key>
+          <Property Name="idMedida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <NavigationProperty Name="Material" Relationship="Self.fk_MateriaMedida" FromRole="Medida" ToRole="Material" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="idPais" />
+          </Key>
+          <Property Name="idPais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <NavigationProperty Name="Estado" Relationship="Self.fk_EstadoPais" FromRole="Pais" ToRole="Estado" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="idPedido" />
+          </Key>
+          <Property Name="idPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaSolicitud" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaEntrega" Type="DateTime" Precision="0" />
+          <Property Name="estatus" Type="Boolean" />
+          <Property Name="total" Type="Double" />
+          <Property Name="fechaPago" Type="DateTime" Precision="0" />
+          <Property Name="numTarjeta" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetallePedido" Relationship="Self.fk_DetallePedidoPedido" FromRole="Pedido" ToRole="DetallePedido" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_PedidoUsuario" FromRole="Pedido" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="idpersona" />
+          </Key>
+          <Property Name="idpersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidoP" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidoM" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="fechaNac" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estatus" Type="Boolean" />
+          <Property Name="telefonoCasa" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoMovil" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="idDomicilio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.fk_ClientePersona" FromRole="Persona" ToRole="Cliente" />
+          <NavigationProperty Name="Domicilio" Relationship="Self.fk_PersonaDomicilio" FromRole="Persona" ToRole="Domicilio" />
+          <NavigationProperty Name="Empleado" Relationship="Self.fk_EmpleadoPersona" FromRole="Persona" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Produccion">
+          <Key>
+            <PropertyRef Name="idProduccion" />
+          </Key>
+          <Property Name="idProduccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoProduccion" Type="Int32" Nullable="false" />
+          <Property Name="costoDisenio" Type="Double" Nullable="false" />
+          <Property Name="costoManoxTiempo" Type="Double" Nullable="false" />
+          <Property Name="porcentajeGanancia" Type="Double" Nullable="false" />
+          <Property Name="subtotalMateriales" Type="Double" Nullable="false" />
+          <Property Name="idProducto" Type="Int32" Nullable="false" />
+          <Property Name="cantidadProducto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetalleProduccion" Relationship="Self.fk_DetalleProducccion" FromRole="Produccion" ToRole="DetalleProduccion" />
+          <NavigationProperty Name="Producto" Relationship="Self.fk_ProduccionProducto" FromRole="Produccion" ToRole="Producto" />
+          <NavigationProperty Name="TipoProduccion" Relationship="Self.fk_ProducciontTipoProduccion" FromRole="Produccion" ToRole="TipoProduccion" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precioProduccion" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="precioVenta" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="Self.fk_ProductoCategoria" FromRole="Producto" ToRole="Categoria" />
+          <NavigationProperty Name="DetallePedido" Relationship="Self.fk_DetallePedidoProducto" FromRole="Producto" ToRole="DetallePedido" />
+          <NavigationProperty Name="inventario" Relationship="Self.fk_InventarioProducto" FromRole="Producto" ToRole="inventario" />
+          <NavigationProperty Name="Produccion" Relationship="Self.fk_ProduccionProducto" FromRole="Producto" ToRole="Produccion" />
+        </EntityType>
+        <EntityType Name="Tarjeta">
+          <Key>
+            <PropertyRef Name="idTarjeta" />
+          </Key>
+          <Property Name="idTarjeta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numero" Type="Int32" Nullable="false" />
+          <Property Name="mes" Type="Int32" Nullable="false" />
+          <Property Name="anio" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <Property Name="cvv" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.fk_ClienteTarjeta" FromRole="Tarjeta" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="TipoEmpleado">
+          <Key>
+            <PropertyRef Name="idTipoEmpleado" />
+          </Key>
+          <Property Name="idTipoEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <NavigationProperty Name="Empleado" Relationship="Self.fk_EmpleadoTipoEmpleado" FromRole="TipoEmpleado" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="TipoProduccion">
+          <Key>
+            <PropertyRef Name="idTipoProduccion" />
+          </Key>
+          <Property Name="idTipoProduccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Produccion" Relationship="Self.fk_ProducciontTipoProduccion" FromRole="TipoProduccion" ToRole="Produccion" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="idTipoUsuario" />
+          </Key>
+          <Property Name="idTipoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_UsuarioTipoUsuario" FromRole="TipoUsuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="correoElectronico" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombrePerfil" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contrasenia" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatus" Type="Boolean" />
+          <Property Name="idTipoUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.fk_ClienteUsuario" FromRole="Usuario" ToRole="Cliente" />
+          <NavigationProperty Name="Empleado" Relationship="Self.fk_EmpleadoUsuario" FromRole="Usuario" ToRole="Empleado" />
+          <NavigationProperty Name="Pedido" Relationship="Self.fk_PedidoUsuario" FromRole="Usuario" ToRole="Pedido" />
+          <NavigationProperty Name="TipoUsuario" Relationship="Self.fk_UsuarioTipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
+        </EntityType>
+        <Association Name="fk_AlmacenMaterial">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Almacen" Type="Self.Almacen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="idMaterial" />
+            </Principal>
+            <Dependent Role="Almacen">
+              <PropertyRef Name="idMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProductoCategoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CiudadEstado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Ciudad">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DomicilioCiudad">
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+          <End Role="Domicilio" Type="Self.Domicilio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="idCiudad" />
+            </Principal>
+            <Dependent Role="Domicilio">
+              <PropertyRef Name="idCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ClientePersona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idpersona" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ClienteTarjeta">
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarjeta">
+              <PropertyRef Name="idTarjeta" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idTarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ClienteUsuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DatosEnvioCliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="DatosEnvio" Type="Self.DatosEnvio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="DatosEnvio">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DatosFacturacionCliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="DatosFacturacion" Type="Self.DatosFacturacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="DatosFacturacion">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DatosEnvioDomicilio">
+          <End Role="Domicilio" Type="Self.Domicilio" Multiplicity="1" />
+          <End Role="DatosEnvio" Type="Self.DatosEnvio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domicilio">
+              <PropertyRef Name="idDomicilio" />
+            </Principal>
+            <Dependent Role="DatosEnvio">
+              <PropertyRef Name="idDomicilio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DatosFacturacionDomicilio">
+          <End Role="Domicilio" Type="Self.Domicilio" Multiplicity="1" />
+          <End Role="DatosFacturacion" Type="Self.DatosFacturacion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Domicilio">
+              <PropertyRef Name="idDomicilio" />
+            </Principal>
+            <Dependent Role="DatosFacturacion">
+              <PropertyRef Name="idDatosFacturacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DetallePedidoPedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="idPedido" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DetallePedidoProducto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DetalleMaterial">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="DetalleProduccion" Type="Self.DetalleProduccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="idMaterial" />
+            </Principal>
+            <Dependent Role="DetalleProduccion">
+              <PropertyRef Name="idMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DetalleProducccion">
+          <End Role="Produccion" Type="Self.Produccion" Multiplicity="1" />
+          <End Role="DetalleProduccion" Type="Self.DetalleProduccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produccion">
+              <PropertyRef Name="idProduccion" />
+            </Principal>
+            <Dependent Role="DetalleProduccion">
+              <PropertyRef Name="idProduccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PersonaDomicilio">
+          <End Role="Domicilio" Type="Self.Domicilio" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Domicilio">
+              <PropertyRef Name="idDomicilio" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="idDomicilio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EmpleadoPersona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="idpersona" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="idPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EmpleadoTipoEmpleado">
+          <End Role="TipoEmpleado" Type="Self.TipoEmpleado" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEmpleado">
+              <PropertyRef Name="idTipoEmpleado" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="idTipoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EmpleadoUsuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EstadoPais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="idPais" />
+            </Principal>
+            <Dependent Role="Estado">
+              <PropertyRef Name="idPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_InventarioProducto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="inventario" Type="Self.inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="inventario">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_MateriaMedida">
+          <End Role="Medida" Type="Self.Medida" Multiplicity="1" />
+          <End Role="Material" Type="Self.Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medida">
+              <PropertyRef Name="idMedida" />
+            </Principal>
+            <Dependent Role="Material">
+              <PropertyRef Name="idMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_PedidoUsuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProduccionProducto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Produccion" Type="Self.Produccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="Produccion">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProducciontTipoProduccion">
+          <End Role="TipoProduccion" Type="Self.TipoProduccion" Multiplicity="1" />
+          <End Role="Produccion" Type="Self.Produccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProduccion">
+              <PropertyRef Name="idTipoProduccion" />
+            </Principal>
+            <Dependent Role="Produccion">
+              <PropertyRef Name="idTipoProduccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UsuarioTipoUsuario">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="idTipoUsuario" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="diseniandoteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Almacen" EntityType="Self.Almacen" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="DatosEnvio" EntityType="Self.DatosEnvio" />
+          <EntitySet Name="DatosFacturacion" EntityType="Self.DatosFacturacion" />
+          <EntitySet Name="DetallePedido" EntityType="Self.DetallePedido" />
+          <EntitySet Name="DetalleProduccion" EntityType="Self.DetalleProduccion" />
+          <EntitySet Name="Domicilio" EntityType="Self.Domicilio" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" />
+          <EntitySet Name="inventario" EntityType="Self.inventario" />
+          <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="Medida" EntityType="Self.Medida" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" />
+          <EntitySet Name="Produccion" EntityType="Self.Produccion" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" />
+          <EntitySet Name="TipoEmpleado" EntityType="Self.TipoEmpleado" />
+          <EntitySet Name="TipoProduccion" EntityType="Self.TipoProduccion" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="fk_AlmacenMaterial" Association="Self.fk_AlmacenMaterial">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Almacen" EntitySet="Almacen" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProductoCategoria" Association="Self.fk_ProductoCategoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CiudadEstado" Association="Self.fk_CiudadEstado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Ciudad" EntitySet="Ciudad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DomicilioCiudad" Association="Self.fk_DomicilioCiudad">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Domicilio" EntitySet="Domicilio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ClientePersona" Association="Self.fk_ClientePersona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ClienteTarjeta" Association="Self.fk_ClienteTarjeta">
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ClienteUsuario" Association="Self.fk_ClienteUsuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DatosEnvioCliente" Association="Self.fk_DatosEnvioCliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="DatosEnvio" EntitySet="DatosEnvio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DatosFacturacionCliente" Association="Self.fk_DatosFacturacionCliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="DatosFacturacion" EntitySet="DatosFacturacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DatosEnvioDomicilio" Association="Self.fk_DatosEnvioDomicilio">
+            <End Role="Domicilio" EntitySet="Domicilio" />
+            <End Role="DatosEnvio" EntitySet="DatosEnvio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DatosFacturacionDomicilio" Association="Self.fk_DatosFacturacionDomicilio">
+            <End Role="Domicilio" EntitySet="Domicilio" />
+            <End Role="DatosFacturacion" EntitySet="DatosFacturacion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DetallePedidoPedido" Association="Self.fk_DetallePedidoPedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DetallePedidoProducto" Association="Self.fk_DetallePedidoProducto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DetalleMaterial" Association="Self.fk_DetalleMaterial">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="DetalleProduccion" EntitySet="DetalleProduccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DetalleProducccion" Association="Self.fk_DetalleProducccion">
+            <End Role="Produccion" EntitySet="Produccion" />
+            <End Role="DetalleProduccion" EntitySet="DetalleProduccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PersonaDomicilio" Association="Self.fk_PersonaDomicilio">
+            <End Role="Domicilio" EntitySet="Domicilio" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EmpleadoPersona" Association="Self.fk_EmpleadoPersona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EmpleadoTipoEmpleado" Association="Self.fk_EmpleadoTipoEmpleado">
+            <End Role="TipoEmpleado" EntitySet="TipoEmpleado" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EmpleadoUsuario" Association="Self.fk_EmpleadoUsuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EstadoPais" Association="Self.fk_EstadoPais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Estado" EntitySet="Estado" />
+          </AssociationSet>
+          <AssociationSet Name="fk_InventarioProducto" Association="Self.fk_InventarioProducto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="inventario" EntitySet="inventario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MateriaMedida" Association="Self.fk_MateriaMedida">
+            <End Role="Medida" EntitySet="Medida" />
+            <End Role="Material" EntitySet="Material" />
+          </AssociationSet>
+          <AssociationSet Name="fk_PedidoUsuario" Association="Self.fk_PedidoUsuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProduccionProducto" Association="Self.fk_ProduccionProducto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Produccion" EntitySet="Produccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProducciontTipoProduccion" Association="Self.fk_ProducciontTipoProduccion">
+            <End Role="TipoProduccion" EntitySet="TipoProduccion" />
+            <End Role="Produccion" EntitySet="Produccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UsuarioTipoUsuario" Association="Self.fk_UsuarioTipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="diseniandoteModelStoreContainer" CdmEntityContainer="diseniandoteEntities">
+          <EntitySetMapping Name="Almacen">
+            <EntityTypeMapping TypeName="diseniandoteModel.Almacen">
+              <MappingFragment StoreEntitySet="Almacen">
+                <ScalarProperty Name="idAlmacen" ColumnName="idAlmacen" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idMaterial" ColumnName="idMaterial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="diseniandoteModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ciudad">
+            <EntityTypeMapping TypeName="diseniandoteModel.Ciudad">
+              <MappingFragment StoreEntitySet="Ciudad">
+                <ScalarProperty Name="idCiudad" ColumnName="idCiudad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="diseniandoteModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idTarjeta" ColumnName="idTarjeta" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatosEnvio">
+            <EntityTypeMapping TypeName="diseniandoteModel.DatosEnvio">
+              <MappingFragment StoreEntitySet="DatosEnvio">
+                <ScalarProperty Name="idDatosEnvio" ColumnName="idDatosEnvio" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idDomicilio" ColumnName="idDomicilio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatosFacturacion">
+            <EntityTypeMapping TypeName="diseniandoteModel.DatosFacturacion">
+              <MappingFragment StoreEntitySet="DatosFacturacion">
+                <ScalarProperty Name="idDatosFacturacion" ColumnName="idDatosFacturacion" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
+                <ScalarProperty Name="idDomicilio" ColumnName="idDomicilio" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetallePedido">
+            <EntityTypeMapping TypeName="diseniandoteModel.DetallePedido">
+              <MappingFragment StoreEntitySet="DetallePedido">
+                <ScalarProperty Name="idDetallePedido" ColumnName="idDetallePedido" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+                <ScalarProperty Name="precioU" ColumnName="precioU" />
+                <ScalarProperty Name="precioDesc" ColumnName="precioDesc" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleProduccion">
+            <EntityTypeMapping TypeName="diseniandoteModel.DetalleProduccion">
+              <MappingFragment StoreEntitySet="DetalleProduccion">
+                <ScalarProperty Name="idDetalleProduccion" ColumnName="idDetalleProduccion" />
+                <ScalarProperty Name="idMaterial" ColumnName="idMaterial" />
+                <ScalarProperty Name="idProduccion" ColumnName="idProduccion" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="subCosto" ColumnName="subCosto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Domicilio">
+            <EntityTypeMapping TypeName="diseniandoteModel.Domicilio">
+              <MappingFragment StoreEntitySet="Domicilio">
+                <ScalarProperty Name="idDomicilio" ColumnName="idDomicilio" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="cp" ColumnName="cp" />
+                <ScalarProperty Name="numeroInt" ColumnName="numeroInt" />
+                <ScalarProperty Name="numeroExt" ColumnName="numeroExt" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="idCiudad" ColumnName="idCiudad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="diseniandoteModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+                <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="nss" ColumnName="nss" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="idTipoEmpleado" ColumnName="idTipoEmpleado" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="diseniandoteModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inventario">
+            <EntityTypeMapping TypeName="diseniandoteModel.inventario">
+              <MappingFragment StoreEntitySet="inventario">
+                <ScalarProperty Name="idInventario" ColumnName="idInventario" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="cantidadMin" ColumnName="cantidadMin" />
+                <ScalarProperty Name="cantidadMax" ColumnName="cantidadMax" />
+                <ScalarProperty Name="cantidadDisponible" ColumnName="cantidadDisponible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Material">
+            <EntityTypeMapping TypeName="diseniandoteModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="idMaterial" ColumnName="idMaterial" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="idMedida" ColumnName="idMedida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medida">
+            <EntityTypeMapping TypeName="diseniandoteModel.Medida">
+              <MappingFragment StoreEntitySet="Medida">
+                <ScalarProperty Name="idMedida" ColumnName="idMedida" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pais">
+            <EntityTypeMapping TypeName="diseniandoteModel.Pais">
+              <MappingFragment StoreEntitySet="Pais">
+                <ScalarProperty Name="idPais" ColumnName="idPais" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="diseniandoteModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="fechaSolicitud" ColumnName="fechaSolicitud" />
+                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="fechaPago" ColumnName="fechaPago" />
+                <ScalarProperty Name="numTarjeta" ColumnName="numTarjeta" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="diseniandoteModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="idpersona" ColumnName="idpersona" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidoP" ColumnName="apellidoP" />
+                <ScalarProperty Name="apellidoM" ColumnName="apellidoM" />
+                <ScalarProperty Name="fechaNac" ColumnName="fechaNac" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="telefonoCasa" ColumnName="telefonoCasa" />
+                <ScalarProperty Name="telefonoMovil" ColumnName="telefonoMovil" />
+                <ScalarProperty Name="idDomicilio" ColumnName="idDomicilio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produccion">
+            <EntityTypeMapping TypeName="diseniandoteModel.Produccion">
+              <MappingFragment StoreEntitySet="Produccion">
+                <ScalarProperty Name="idProduccion" ColumnName="idProduccion" />
+                <ScalarProperty Name="idTipoProduccion" ColumnName="idTipoProduccion" />
+                <ScalarProperty Name="costoDisenio" ColumnName="costoDisenio" />
+                <ScalarProperty Name="costoManoxTiempo" ColumnName="costoManoxTiempo" />
+                <ScalarProperty Name="porcentajeGanancia" ColumnName="porcentajeGanancia" />
+                <ScalarProperty Name="subtotalMateriales" ColumnName="subtotalMateriales" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="cantidadProducto" ColumnName="cantidadProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="diseniandoteModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precioProduccion" ColumnName="precioProduccion" />
+                <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarjeta">
+            <EntityTypeMapping TypeName="diseniandoteModel.Tarjeta">
+              <MappingFragment StoreEntitySet="Tarjeta">
+                <ScalarProperty Name="idTarjeta" ColumnName="idTarjeta" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="anio" ColumnName="anio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="cvv" ColumnName="cvv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEmpleado">
+            <EntityTypeMapping TypeName="diseniandoteModel.TipoEmpleado">
+              <MappingFragment StoreEntitySet="TipoEmpleado">
+                <ScalarProperty Name="idTipoEmpleado" ColumnName="idTipoEmpleado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoProduccion">
+            <EntityTypeMapping TypeName="diseniandoteModel.TipoProduccion">
+              <MappingFragment StoreEntitySet="TipoProduccion">
+                <ScalarProperty Name="idTipoProduccion" ColumnName="idTipoProduccion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoUsuario">
+            <EntityTypeMapping TypeName="diseniandoteModel.TipoUsuario">
+              <MappingFragment StoreEntitySet="TipoUsuario">
+                <ScalarProperty Name="idTipoUsuario" ColumnName="idTipoUsuario" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="diseniandoteModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="nombrePerfil" ColumnName="nombrePerfil" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="idTipoUsuario" ColumnName="idTipoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

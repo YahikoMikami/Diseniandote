@@ -1,0 +1,83 @@
+﻿@model Diseniandote.Models.Domicilio
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Domicilio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.colonia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.colonia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numeroInt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numeroInt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numeroExt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numeroExt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ciudad.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ciudad.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatosFacturacion.rfc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatosFacturacion.rfc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idDomicilio }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

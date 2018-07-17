@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Diseniandote.Models.Produccion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.costoDisenio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.costoManoxTiempo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.porcentajeGanancia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subtotalMateriales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidadProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoProduccion.descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.costoDisenio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.costoManoxTiempo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.porcentajeGanancia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subtotalMateriales)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidadProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoProduccion.descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idProduccion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idProduccion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idProduccion })
+        </td>
+    </tr>
+}
+
+</table>

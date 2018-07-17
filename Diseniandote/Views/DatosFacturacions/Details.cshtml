@@ -1,0 +1,59 @@
+﻿@model Diseniandote.Models.DatosFacturacion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DatosFacturacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.rfc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rfc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.razonSocial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.razonSocial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idDomicilio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idDomicilio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.idCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.idCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Domicilio.calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Domicilio.calle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idDatosFacturacion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

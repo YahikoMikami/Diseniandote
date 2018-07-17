@@ -1,0 +1,51 @@
+﻿@model Diseniandote.Models.inventario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>inventario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidadMin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidadMin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidadMax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidadMax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidadDisponible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidadDisponible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idInventario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

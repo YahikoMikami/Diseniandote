@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="283ab50c954d4211a9bd67d892cc5370" Name="Diagram1">
+        <EntityTypeShape EntityType="diseniandoteModel.Almacen" Width="1.5" PointX="21.5" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Categoria" Width="1.5" PointX="11.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Ciudad" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Cliente" Width="1.5" PointX="12" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.DatosEnvio" Width="1.5" PointX="9.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.DatosFacturacion" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.DetallePedido" Width="1.5" PointX="16.25" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.DetalleProduccion" Width="1.5" PointX="21.5" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Domicilio" Width="1.5" PointX="7.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Empleado" Width="1.5" PointX="15" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Estado" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.inventario" Width="1.5" PointX="16.25" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Material" Width="1.5" PointX="19.25" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Medida" Width="1.5" PointX="17" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Pais" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Pedido" Width="1.5" PointX="14" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Persona" Width="1.5" PointX="9.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Produccion" Width="1.5" PointX="19.25" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Producto" Width="1.5" PointX="14" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Tarjeta" Width="1.5" PointX="9.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.TipoEmpleado" Width="1.5" PointX="12.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.TipoProduccion" Width="1.5" PointX="17" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.TipoUsuario" Width="1.5" PointX="7.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="diseniandoteModel.Usuario" Width="1.5" PointX="9.75" PointY="19.875" IsExpanded="true" />
+        <AssociationConnector Association="diseniandoteModel.fk_AlmacenMaterial" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_ProductoCategoria" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_CiudadEstado" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_DomicilioCiudad" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_ClientePersona" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_ClienteTarjeta" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_ClienteUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_DatosEnvioCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_DatosFacturacionCliente" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_DatosEnvioDomicilio" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_DatosFacturacionDomicilio" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_DetallePedidoPedido" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_DetallePedidoProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_DetalleMaterial" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_DetalleProducccion" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_PersonaDomicilio" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_EmpleadoPersona" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_EmpleadoTipoEmpleado" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_EmpleadoUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_EstadoPais" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_InventarioProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_MateriaMedida" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_PedidoUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_ProduccionProducto" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_ProducciontTipoProduccion" ManuallyRouted="false" />
+        <AssociationConnector Association="diseniandoteModel.fk_UsuarioTipoUsuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

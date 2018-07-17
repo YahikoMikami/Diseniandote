@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Diseniandote.Models.Domicilio>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.calle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.colonia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numeroInt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numeroExt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ciudad.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatosFacturacion.rfc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.calle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.colonia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numeroInt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numeroExt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ciudad.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatosFacturacion.rfc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idDomicilio }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idDomicilio }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idDomicilio })
+        </td>
+    </tr>
+}
+
+</table>
