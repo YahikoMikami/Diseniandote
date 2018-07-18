@@ -33,7 +33,7 @@ idDomicilio int primary key identity,
 calle varchar(120) not null,
 colonia varchar(120) not null,
 cp char (5) not null,
-numeroInt varchar(5) not null,
+numeroInt varchar(5),
 numeroExt varchar(5) not null,
 estatus bit default 1,
 idCiudad int not null,
@@ -105,7 +105,8 @@ idUsuario int not null,
 estatus bit not null,
 
 constraint fk_ClientePersona foreign key (idPersona) references Persona (idPersona),
-constraint fk_ClienteUsuario foreign key (idUsuario) references Usuario (idUsuario));
+constraint fk_ClienteUsuario foreign key (idUsuario) references Usuario (idUsuario)
+);
 
 
 create table Tarjeta(

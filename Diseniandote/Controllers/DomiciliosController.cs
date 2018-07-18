@@ -80,6 +80,24 @@ namespace Diseniandote.Controllers
             return View(domicilio);
         }
 
+        public Domicilio Crear(Domicilio domicilio)
+        {
+            if (ModelState.IsValid)
+            {
+                domicilio.idCiudad = 1;
+                db.Domicilio.Add(domicilio);
+                db.SaveChanges();
+                var d = db.Domicilio.SqlQuery("SELECT TOP 1 * FROM Domicilio ORDER BY idDomicilio DESC").ToList();
+                foreach (var item in d)
+                {
+                    domicilio.idDomicilio = item.idDomicilio;
+                }
+            }
+            
+
+            return domicilio;
+        }
+
         // POST: Domicilios/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.

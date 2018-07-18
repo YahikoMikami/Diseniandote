@@ -14,6 +14,11 @@ namespace Diseniandote.Controllers
     {
         private diseniandoteEntities db = new diseniandoteEntities();
 
+        private DomiciliosController domi = new DomiciliosController();
+        private PersonasController per = new PersonasController();
+        private UsuariosController usu = new UsuariosController();
+        private TarjetasController tar = new TarjetasController();
+        private TipoUsuariosController tUsu = new TipoUsuariosController();
         // GET: Clientes
         public ActionResult Index()
         {
@@ -126,6 +131,45 @@ namespace Diseniandote.Controllers
             db.Cliente.Remove(cliente);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Registrar()
+        {
+            ViewBag.idPersona = new SelectList(db.Persona, "idpersona", "nombre");
+            ViewBag.idTarjeta = new SelectList(db.Tarjeta, "idTarjeta", "nombre");
+            ViewBag.idUsuario = new SelectList(db.Usuario, "idUsuario", "correoElectronico");
+            ViewBag.idCiudad = new SelectList(db.Ciudad, "idCiudad", "nombre");
+            ViewBag.idTipoUsuario = new SelectList(db.TipoUsuario, "idTipoUsuario", "descripcion");
+            ViewBag.idDomicilio= new SelectList(db.Domicilio, "idDomicilio", "calle");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Registrar(Cliente cliente,Persona persona,Domicilio domicilio,TipoUsuario tipoUsuario,Usuario usuario,Tarjeta tarjeta)
+        {
+            if (ModelState.IsValid)
+            {
+                Domicilio d = domi.Crear(domicilio);
+                persona.idDomicilio = d.idDomicilio;
+                Persona p = per.Crear(persona);
+                Tarjeta t = tar.Crear(tarjeta);
+                Usuario u = usu.Crear(usuario);
+                cliente.idPersona = p.idpersona;
+                cliente.idTarjeta = t.idTarjeta;
+                cliente.idUsuario = u.idUsuario;
+                db.Cliente.Add(cliente);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.idPersona = new SelectList(db.Persona, "idpersona", "nombre");
+            ViewBag.idTarjeta = new SelectList(db.Tarjeta, "idTarjeta", "nombre");
+            ViewBag.idUsuario = new SelectList(db.Usuario, "idUsuario", "correoElectronico");
+            ViewBag.idCiudad = new SelectList(db.Ciudad, "idCiudad", "nombre", domicilio.idCiudad);
+            ViewBag.idTipoUsuario = new SelectList(db.TipoUsuario, "idTipoUsuario", "descripcion");
+            ViewBag.idDomicilio = new SelectList(db.Domicilio, "idDomicilio", "calle");
+            return View(cliente);
+           
         }
 
         protected override void Dispose(bool disposing)

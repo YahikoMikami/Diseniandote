@@ -104,6 +104,19 @@ namespace Diseniandote.Controllers
             return View(tarjeta);
         }
 
+        public Tarjeta Crear(Tarjeta tarjeta)
+        {
+            db.Tarjeta.Add(tarjeta);
+            db.SaveChanges();
+            var d = db.Tarjeta.SqlQuery("SELECT TOP 1 * FROM Tarjeta ORDER BY idTarjeta DESC").ToList();
+            foreach (var item in d)
+            {
+                tarjeta.idTarjeta = item.idTarjeta;
+            }
+
+            return tarjeta;
+        }
+
         // POST: Tarjetas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

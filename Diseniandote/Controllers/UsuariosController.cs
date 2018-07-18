@@ -94,6 +94,20 @@ namespace Diseniandote.Controllers
             return View(usuario);
         }
 
+        public Usuario Crear(Usuario usuario)
+        {
+            usuario.idTipoUsuario = 2;
+            db.Usuario.Add(usuario);
+            db.SaveChanges();
+            var d = db.Usuario.SqlQuery("SELECT TOP 1 * FROM Usuario ORDER BY idUsuario DESC").ToList();
+            foreach (var item in d)
+            {
+                usuario.idUsuario = item.idUsuario;
+            }
+
+            return usuario;
+        }
+
         // GET: Usuarios/Delete/5
         public ActionResult Delete(int? id)
         {

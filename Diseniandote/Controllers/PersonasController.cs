@@ -94,6 +94,19 @@ namespace Diseniandote.Controllers
             return View(persona);
         }
 
+        public Persona Crear(Persona persona)
+        {
+            db.Persona.Add(persona);
+            db.SaveChanges();
+            var d = db.Persona.SqlQuery("SELECT TOP 1 * FROM Persona ORDER BY idPersona DESC").ToList();
+            foreach (var item in d)
+            {
+                persona.idpersona = item.idpersona;
+            }
+
+            return persona;
+        }
+
         // GET: Personas/Delete/5
         public ActionResult Delete(int? id)
         {
